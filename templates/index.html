@@ -1,0 +1,202 @@
+{% extends "base.html" %}
+
+{% block body %}
+<header class="hero wrap" id="top">
+  <span class="eyebrow">{{ profile.role }}</span>
+  <h1>{{ profile.headline_pre }}<em>{{ profile.headline_em }}</em>{{ profile.headline_post }}</h1>
+  <p class="lede">{{ profile.lede }}</p>
+  <div class="hero-actions">
+    <a href="#work" class="btn btn-solid">See selected work →</a>
+    <a href="#contact" class="btn btn-ghost">Contact me</a>
+  </div>
+
+  <div class="ledger reveal">
+    {% for val, unit, label in metrics %}
+    <div class="cell"><div class="val">{{ val }}<span class="u">{{ unit }}</span></div><div class="lab">{{ label }}</div></div>
+    {% endfor %}
+  </div>
+</header>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">About</span>
+      <h2>A builder and an educator, in equal measure.</h2>
+    </div>
+    <div class="about-grid">
+      <div class="reveal">
+        {% for para in about %}
+        <p>{{ para | safe }}</p>
+        {% endfor %}
+      </div>
+      <div class="focus-card reveal">
+        <h3>What I focus on</h3>
+        <ul>
+          {% for name, tag in focus %}
+          <li>{{ name }} <span>{{ tag }}</span></li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WORK -->
+<section id="work">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Selected work</span>
+      <h2>Models and applications, with the numbers attached.</h2>
+      <p>A selection of systems I've designed, trained, and deployed. Where it's a model, the measured accuracy is reported as-is.</p>
+    </div>
+    <div class="work-grid">
+      {% for p in projects %}
+      <a class="card reveal" href="{{ url_for('work_detail', slug=p.slug) }}">
+        <span class="tag">{{ p.tag }}</span>
+        <h3>{{ p.title }}</h3>
+        <p>{{ p.desc }}</p>
+        <div class="stack">{% for s in p.stack %}<span>{{ s }}</span>{% endfor %}</div>
+        <div class="readout">
+          <div class="metric{% if p.metric_small %} small{% endif %}">{{ p.metric }}{% if p.metric_unit %}<span class="pct">{{ p.metric_unit }}</span>{% endif %}</div>
+          <div class="metric-lab">{{ p.metric_label }}</div>
+        </div>
+        <div class="gauge"><i data-w="{{ p.gauge }}"></i></div>
+        <span class="card-cta">View project →</span>
+      </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Experience</span>
+      <h2>Where I've worked.</h2>
+    </div>
+    <div class="tl">
+      {% for job in experience %}
+      <div class="tl-row reveal">
+        <div class="tl-when"><b>{{ job.when }}</b>{{ job.place | safe }}</div>
+        <div class="tl-role">
+          <h3>{{ job.role | safe }}</h3>
+          <div class="tl-org">{{ job.org | safe }}</div>
+          <ul>
+            {% for point in job.points %}
+            <li>{{ point }}</li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Toolkit</span>
+      <h2>What I build with.</h2>
+    </div>
+    <div class="skills-grid">
+      {% for heading, items in skills %}
+      <div class="skill-block reveal">
+        <h3>{{ heading }}</h3>
+        <div class="chips">{% for item in items %}<span>{{ item }}</span>{% endfor %}</div>
+      </div>
+      {% endfor %}
+    </div>
+
+    <div class="edu-cols">
+      <div class="reveal">
+        <h3 class="edu-head">Education</h3>
+        <div class="edu-grid">
+          {% for yr, title, place in education %}
+          <div class="edu-item">
+            <div class="yr">{{ yr }}</div>
+            <h3>{{ title }}</h3>
+            <p>{{ place }}</p>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+      <div class="reveal">
+        <h3 class="edu-head">Certifications</h3>
+        <div class="edu-grid">
+          {% for yr, title, place in certifications %}
+          <div class="edu-item">
+            <div class="yr">{{ yr }}</div>
+            <h3>{{ title }}</h3>
+            <p>{{ place }}</p>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="wrap">
+    <div class="contact reveal">
+      <span class="eyebrow">Contact</span>
+      <h2>Let's build something <em>intelligent</em> together.</h2>
+      <p>Open to AI/ML engineering, data science, and full-stack roles, as well as teaching and collaboration. Drop a message below — or reach me directly.</p>
+
+      <div class="contact-grid">
+        <!-- form -->
+        <form class="contact-form" method="POST" action="{{ url_for('contact') }}" novalidate>
+          {{ form.csrf_token }}
+
+          {% with messages = get_flashed_messages(with_categories=true) %}
+            {% for category, message in messages %}
+              <div class="flash {{ category }}">{{ message }}</div>
+            {% endfor %}
+          {% endwith %}
+
+          <div class="field">
+            {{ form.name.label }}
+            {{ form.name(placeholder="Your name") }}
+            {% for e in form.name.errors %}<span class="err">{{ e }}</span>{% endfor %}
+          </div>
+          <div class="field">
+            {{ form.email.label }}
+            {{ form.email(placeholder="you@example.com") }}
+            {% for e in form.email.errors %}<span class="err">{{ e }}</span>{% endfor %}
+          </div>
+          <div class="field">
+            {{ form.message.label }}
+            {{ form.message(placeholder="What would you like to build or discuss?") }}
+            {% for e in form.message.errors %}<span class="err">{{ e }}</span>{% endfor %}
+          </div>
+          <button type="submit" class="btn btn-solid">Send message →</button>
+        </form>
+
+        <!-- direct details -->
+        <div class="contact-rows">
+          <a class="crow" href="mailto:{{ profile.email }}">
+            <span class="k">Email</span>
+            <span class="v">{{ profile.email }}</span>
+            <span class="arrow">↗</span>
+          </a>
+          <a class="crow" href="tel:{{ profile.phone_link }}">
+            <span class="k">Phone</span>
+            <span class="v">{{ profile.phone_display }}</span>
+            <span class="arrow">↗</span>
+          </a>
+          <div class="crow">
+            <span class="k">Location</span>
+            <span class="v">{{ profile.location }}</span>
+            <span class="arrow" style="opacity:.4">●</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

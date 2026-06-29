@@ -1,0 +1,27 @@
+# Environment / secrets
+.env
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+env/
+
+# Database
+*.db
+*.sqlite3
+instance/
+
+# Demo apps — each is deployed from its own separate Git repo, not bundled here
+demos/
+
+# Deploy bundles
+*.zip
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

@@ -1,0 +1,101 @@
+{% extends "base.html" %}
+
+{% block title %}{{ p.title }} — {{ profile.name }}{% endblock %}
+{% block description %}{{ p.desc }}{% endblock %}
+
+{% block body %}
+<article class="proj wrap">
+
+  <a class="back-link" href="{{ url_for('index') }}#work">← All work</a>
+
+  <header class="proj-head reveal">
+    <span class="eyebrow">{{ p.tag }}</span>
+    <h1>{{ p.title }}</h1>
+    <p class="proj-lede">{{ p.desc }}</p>
+    <div class="proj-meta">
+      {% if p.detail.year %}<span><b>Year</b>{{ p.detail.year }}</span>{% endif %}
+      {% if p.detail.role %}<span><b>Role</b>{{ p.detail.role }}</span>{% endif %}
+      <span><b>{{ p.metric_label }}</b>{{ p.metric }}{{ p.metric_unit }}</span>
+    </div>
+
+    {% if p.detail.links %}
+    <div class="proj-links">
+      {% for link in p.detail.links %}
+        {% if link.url and link.url != '#' %}
+          <a class="proj-link" href="{{ link.url }}" target="_blank" rel="noopener">{{ link.label }} ↗</a>
+        {% else %}
+          <span class="proj-link disabled" title="Add a URL in data.py">{{ link.label }} · soon</span>
+        {% endif %}
+      {% endfor %}
+    </div>
+    {% endif %}
+  </header>
+
+  {% if p.detail.gallery %}
+  <div class="proj-gallery reveal">
+    {% for img in p.detail.gallery %}
+    <img src="{{ url_for('static', filename='img/' + img) }}" alt="{{ p.title }} screenshot" loading="lazy">
+    {% endfor %}
+  </div>
+  {% endif %}
+
+  <div class="proj-body">
+    <div class="proj-main">
+      {% if p.detail.overview %}
+      <section class="proj-block reveal">
+        <h2>Overview</h2>
+        {% for para in p.detail.overview %}<p>{{ para }}</p>{% endfor %}
+      </section>
+      {% endif %}
+
+      {% if p.detail.problem %}
+      <section class="proj-block reveal">
+        <h2>The problem</h2>
+        <p>{{ p.detail.problem }}</p>
+      </section>
+      {% endif %}
+
+      {% if p.detail.approach %}
+      <section class="proj-block reveal">
+        <h2>Approach</h2>
+        <ul class="proj-list">{% for item in p.detail.approach %}<li>{{ item }}</li>{% endfor %}</ul>
+      </section>
+      {% endif %}
+
+      {% if p.detail.results %}
+      <section class="proj-block reveal">
+        <h2>Results</h2>
+        <ul class="proj-list">{% for item in p.detail.results %}<li>{{ item }}</li>{% endfor %}</ul>
+      </section>
+      {% endif %}
+    </div>
+
+    <aside class="proj-aside reveal">
+      <div class="focus-card">
+        <h3>Tech stack</h3>
+        <div class="chips">{% for s in p.stack %}<span>{{ s }}</span>{% endfor %}</div>
+      </div>
+      <div class="focus-card" style="margin-top:18px">
+        <h3>Headline</h3>
+        <div class="readout" style="border-top:0;padding-top:0">
+          <div class="metric{% if p.metric_small %} small{% endif %}">{{ p.metric }}{% if p.metric_unit %}<span class="pct">{{ p.metric_unit }}</span>{% endif %}</div>
+          <div class="metric-lab">{{ p.metric_label }}</div>
+        </div>
+        <div class="gauge" style="margin-top:14px"><i data-w="{{ p.gauge }}"></i></div>
+      </div>
+    </aside>
+  </div>
+
+  <!-- prev / next -->
+  <nav class="proj-nav">
+    {% if prev %}<a href="{{ url_for('work_detail', slug=prev.slug) }}"><span>← Previous</span><b>{{ prev.title }}</b></a>{% else %}<span></span>{% endif %}
+    {% if next %}<a class="next" href="{{ url_for('work_detail', slug=next.slug) }}"><span>Next →</span><b>{{ next.title }}</b></a>{% endif %}
+  </nav>
+
+  <div class="proj-foot-cta reveal">
+    <p>Want the full story or the code?</p>
+    <a class="btn btn-solid" href="{{ url_for('index') }}#contact">Get in touch →</a>
+  </div>
+
+</article>
+{% endblock %}

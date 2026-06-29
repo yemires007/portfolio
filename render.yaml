@@ -1,0 +1,19 @@
+# Render Blueprint — deploys the portfolio site.
+# On Render: New + -> Blueprint -> connect this repo. Render reads this file.
+#
+# Email for the contact form is OPTIONAL. The form always saves/handles a
+# submission; to also get an email, add these in the Render dashboard
+# (Environment tab) after the first deploy:
+#   MAIL_USERNAME, MAIL_PASSWORD (a Gmail App Password), MAIL_TO
+services:
+  - type: web
+    name: portfolio
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app --bind 0.0.0.0:$PORT
+    envVars:
+      - key: SECRET_KEY
+        generateValue: true     # Render generates a strong secret
+      - key: PYTHON_VERSION
+        value: "3.12.3"
