@@ -99,7 +99,15 @@ def send_notification(name, email, message):
     req = urllib.request.Request(
         "https://api.web3forms.com/submit",
         data=payload,
-        headers={"Content-Type": "application/json", "Accept": "application/json"},
+        headers={
+            "Content-Type": "application/json",
+            "Accept": "application/json",
+            # Web3Forms is behind Cloudflare, which 403s the default
+            # "Python-urllib" agent — present a normal browser UA.
+            "User-Agent": ("Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
+                           "AppleWebKit/537.36 (KHTML, like Gecko) "
+                           "Chrome/120.0.0.0 Safari/537.36"),
+        },
         method="POST",
     )
     try:
