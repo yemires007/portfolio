@@ -13,6 +13,36 @@
 const yr = document.getElementById('yr');
 if (yr) yr.textContent = new Date().getFullYear();
 
+// contact form → Web3Forms (submitted from the browser, so no SMTP / no 403)
+const contactForm = document.getElementById('contact-form');
+if (contactForm) {
+  const result = document.getElementById('cf-result');
+  contactForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    result.textContent = 'Sending…';
+    result.className = 'cf-result sending';
+    try {
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { Accept: 'application/json' },
+        body: new FormData(contactForm),
+      });
+      const data = await res.json();
+      if (data.success) {
+        result.textContent = "Thanks — your message landed. I'll get back to you soon.";
+        result.className = 'cf-result ok';
+        contactForm.reset();
+      } else {
+        result.textContent = data.message || 'Something went wrong — please email me directly.';
+        result.className = 'cf-result err';
+      }
+    } catch (err) {
+      result.textContent = 'Network error — please email me directly.';
+      result.className = 'cf-result err';
+    }
+  });
+}
+
 // scroll reveal + gauge fill
 const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const io = new IntersectionObserver((entries) => {

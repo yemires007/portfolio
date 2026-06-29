@@ -38,6 +38,13 @@ app.config["SECRET_KEY"] = os.environ.get("SECRET_KEY", "dev-only-insecure-key")
 csrf = CSRFProtect(app)
 
 
+@app.context_processor
+def inject_web3forms_key():
+    # Web3Forms access keys are public by design (they only deliver to the
+    # owner's verified email), so it's safe to render into the page.
+    return {"web3forms_key": os.environ.get("WEB3FORMS_ACCESS_KEY", "")}
+
+
 # --------------------------------------------------------------------------- #
 # Contact form
 # --------------------------------------------------------------------------- #

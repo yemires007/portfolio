@@ -150,31 +150,27 @@
 
       <div class="contact-grid">
         <!-- form -->
-        <form class="contact-form" method="POST" action="{{ url_for('contact') }}" novalidate>
-          {{ form.csrf_token }}
-
-          {% with messages = get_flashed_messages(with_categories=true) %}
-            {% for category, message in messages %}
-              <div class="flash {{ category }}">{{ message }}</div>
-            {% endfor %}
-          {% endwith %}
+        <form id="contact-form" class="contact-form" action="https://api.web3forms.com/submit" method="POST">
+          <input type="hidden" name="access_key" value="{{ web3forms_key }}">
+          <input type="hidden" name="subject" value="New message from your portfolio">
+          <input type="hidden" name="from_name" value="Portfolio contact form">
+          <!-- honeypot (anti-spam): real users leave this empty -->
+          <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off">
 
           <div class="field">
-            {{ form.name.label }}
-            {{ form.name(placeholder="Your name") }}
-            {% for e in form.name.errors %}<span class="err">{{ e }}</span>{% endfor %}
+            <label for="cf-name">Name</label>
+            <input id="cf-name" name="name" placeholder="Your name" required>
           </div>
           <div class="field">
-            {{ form.email.label }}
-            {{ form.email(placeholder="you@example.com") }}
-            {% for e in form.email.errors %}<span class="err">{{ e }}</span>{% endfor %}
+            <label for="cf-email">Email</label>
+            <input id="cf-email" type="email" name="email" placeholder="you@example.com" required>
           </div>
           <div class="field">
-            {{ form.message.label }}
-            {{ form.message(placeholder="What would you like to build or discuss?") }}
-            {% for e in form.message.errors %}<span class="err">{{ e }}</span>{% endfor %}
+            <label for="cf-message">Message</label>
+            <textarea id="cf-message" name="message" placeholder="What would you like to build or discuss?" required></textarea>
           </div>
           <button type="submit" class="btn btn-solid">Send message →</button>
+          <div id="cf-result" class="cf-result" aria-live="polite"></div>
         </form>
 
         <!-- direct details -->
