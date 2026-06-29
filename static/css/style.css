@@ -110,16 +110,17 @@ nav{
 /* metric ledger */
 .ledger{
   margin-top:64px;border-top:1px solid var(--ink);
-  display:grid;grid-template-columns:repeat(4,1fr);
+  display:grid;grid-template-columns:repeat(4,minmax(0,1fr));
 }
-.ledger .cell{padding:22px 22px 22px 0;border-right:1px solid var(--line)}
+.ledger .cell{padding:22px 22px 22px 0;border-right:1px solid var(--line);min-width:0}
 .ledger .cell:last-child{border-right:0}
 .ledger .val{font-family:var(--display);font-weight:600;font-size:clamp(30px,4vw,46px);line-height:1;color:var(--primary-deep)}
 .ledger .val .u{color:var(--signal)}
 .ledger .lab{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-top:12px}
 @media(max-width:720px){
-  .ledger{grid-template-columns:repeat(2,1fr)}
-  .ledger .cell{padding:18px 16px 18px 0}
+  .ledger{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .ledger .cell{padding:18px 14px 18px 0}
+  .ledger .lab{letter-spacing:.06em}
   .ledger .cell:nth-child(2){border-right:0}
   .ledger .cell:nth-child(1),.ledger .cell:nth-child(2){border-bottom:1px solid var(--line)}
 }
@@ -143,11 +144,11 @@ section{padding:84px 0}
 @media(max-width:820px){.about-grid{grid-template-columns:1fr;gap:34px}}
 
 /* ---------- WORK / MODEL CARDS ---------- */
-.work-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:22px}
+.work-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px}
 @media(max-width:820px){.work-grid{grid-template-columns:1fr}}
 .card{
   background:var(--card);border:1px solid var(--line);border-radius:4px;
-  padding:28px;position:relative;overflow:hidden;transition:transform .3s ease,box-shadow .3s ease,border-color .3s ease;
+  padding:28px;position:relative;overflow:hidden;min-width:0;transition:transform .3s ease,box-shadow .3s ease,border-color .3s ease;
 }
 .card:hover{transform:translateY(-4px);box-shadow:0 18px 40px -24px rgba(19,40,43,.5);border-color:var(--primary)}
 .card .tag{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--signal)}
@@ -180,7 +181,7 @@ section{padding:84px 0}
 @media(max-width:720px){.tl-row{grid-template-columns:1fr;gap:10px}}
 
 /* ---------- SKILLS ---------- */
-.skills-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:26px}
+.skills-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:26px}
 @media(max-width:720px){.skills-grid{grid-template-columns:1fr}}
 .skill-block h3{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--primary);margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid var(--line)}
 .chips{display:flex;flex-wrap:wrap;gap:8px}
