@@ -9,12 +9,13 @@ Run locally:
     python app.py
 then open http://127.0.0.1:5000
 """
+import json
 import os
 import re
-import smtplib
 import sqlite3
+import urllib.error
+import urllib.request
 from datetime import datetime, timezone
-from email.message import EmailMessage
 from pathlib import Path
 
 from dotenv import load_dotenv
@@ -76,38 +77,38 @@ def save_message(name, email, message):
 
 
 # --------------------------------------------------------------------------- #
-# Email notification (best-effort; failures never break the form)
+# Email notification via Web3Forms (HTTPS — works on hosts that block SMTP).
+# Best-effort: failures never break the form. Set WEB3FORMS_ACCESS_KEY in the
+# host's environment (get a free key at https://web3forms.com).
 # --------------------------------------------------------------------------- #
 def send_notification(name, email, message):
-    username = os.environ.get("MAIL_USERNAME")
-    password = os.environ.get("MAIL_PASSWORD")
-    if not (username and password):
-        return False  # email not configured — message is still saved
+    access_key = os.environ.get("WEB3FORMS_ACCESS_KEY")
+    if not access_key:
+        return False  # not configured — message is still saved to the DB
 
-    server = os.environ.get("MAIL_SERVER", "smtp.gmail.com")
-    port = int(os.environ.get("MAIL_PORT", 587))
-    use_tls = os.environ.get("MAIL_USE_TLS", "1") == "1"
-    mail_to = os.environ.get("MAIL_TO", username)
+    payload = json.dumps({
+        "access_key": access_key,
+        "subject": f"Portfolio contact — {name}",
+        "from_name": "Portfolio contact form",
+        "name": name,
+        "email": email,
+        "replyto": email,
+        "message": message,
+    }).encode("utf-8")
 
-    msg = EmailMessage()
-    msg["Subject"] = f"Portfolio contact — {name}"
-    msg["From"] = username
-    msg["To"] = mail_to
-    msg["Reply-To"] = email
-    msg.set_content(
-        f"New message from your portfolio contact form.\n\n"
-        f"Name:  {name}\n"
-        f"Email: {email}\n\n"
-        f"{message}\n"
+    req = urllib.request.Request(
+        "https://api.web3forms.com/submit",
+        data=payload,
+        headers={"Content-Type": "application/json", "Accept": "application/json"},
+        method="POST",
     )
-
     try:
-        with smtplib.SMTP(server, port, timeout=15) as smtp:
-            if use_tls:
-                smtp.starttls()
-            smtp.login(username, password)
-            smtp.send_message(msg)
-        return True
+        with urllib.request.urlopen(req, timeout=15) as resp:
+            body = json.loads(resp.read().decode("utf-8"))
+            if body.get("success"):
+                return True
+            app.logger.warning("Web3Forms rejected the message: %s", body)
+            return False
     except Exception as exc:  # noqa: BLE001 — log and carry on
         app.logger.warning("Email notification failed: %s", exc)
         return False
