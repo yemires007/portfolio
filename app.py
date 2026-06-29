@@ -38,11 +38,25 @@ app.config["SECRET_KEY"] = os.environ.get("SECRET_KEY", "dev-only-insecure-key")
 csrf = CSRFProtect(app)
 
 
+def _asset_version():
+    """A cache-busting token from the CSS file's mtime — changes each deploy."""
+    try:
+        return str(int((BASE_DIR / "static" / "css" / "style.css").stat().st_mtime))
+    except OSError:
+        return "1"
+
+
+ASSET_V = _asset_version()
+
+
 @app.context_processor
-def inject_web3forms_key():
+def inject_globals():
     # Web3Forms access keys are public by design (they only deliver to the
     # owner's verified email), so it's safe to render into the page.
-    return {"web3forms_key": os.environ.get("WEB3FORMS_ACCESS_KEY", "")}
+    return {
+        "web3forms_key": os.environ.get("WEB3FORMS_ACCESS_KEY", ""),
+        "asset_v": ASSET_V,
+    }
 
 
 # --------------------------------------------------------------------------- #
