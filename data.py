@@ -492,6 +492,9 @@ EXPERIENCE = [
     },
 ]
 
+
+
+
 SKILLS = [
     ("Programming & Scripting", ["Python", "SQL", "JavaScript", "HTML", "CSS"]),
     ("ML & Deep Learning",

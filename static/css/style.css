@@ -72,7 +72,13 @@ nav{
   transition:.2s;
 }
 .nav-cta:hover{background:var(--ink);color:var(--paper)}
-@media(max-width:720px){.nav-links{display:none}}
+/* mobile nav: brand + CTA on top row, links wrap to a full-width second row */
+@media(max-width:720px){
+  .nav-in{height:auto;flex-wrap:wrap;padding:11px 0;row-gap:9px}
+  .brand{order:1}
+  .nav-cta{order:2}
+  .nav-links{order:3;width:100%;justify-content:space-between;gap:12px;font-size:13px}
+}
 
 /* ---------- HERO ---------- */
 .hero{padding:88px 0 64px;position:relative}
