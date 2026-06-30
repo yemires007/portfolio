@@ -328,7 +328,7 @@ PROJECTS = [
             ],
             "links": [
                 {"label": "GitHub", "url": "#"},
-                {"label": "Live demo", "url": "#"},
+                {"label": "Live demo", "url": "https://phishguard-bkzq.onrender.com"},
             ],
             "gallery": [],
         },
