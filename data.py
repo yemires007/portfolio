@@ -84,7 +84,8 @@ PROJECTS = [
         "title": "Sign-language recognition",
         "desc": "A Vision Transformer (ViT) using transfer learning for "
                 "image-based gesture classification and real-time prediction "
-                "— built toward accessibility for the deaf and mute community.",
+                "— built toward accessibility for the deaf and mute community. "
+                "Built with: ViT · Transfer Learning · PyTorch · OpenCV · Python.",
         "stack": ["ViT", "Transfer Learning", "PyTorch", "OpenCV", 'Python'],
         "metric": "96", "metric_unit": "%", "metric_small": False,
         "metric_label": "Classification accuracy", "gauge": 96,
@@ -126,7 +127,8 @@ PROJECTS = [
         "title": "Crop-disease prediction",
         "desc": "A predictive system for early plant-disease detection, built "
                 "and deployed with TensorFlow to support better, earlier "
-                "decisions in agricultural applications.",
+                "decisions in agricultural applications. "
+                "Built with: TensorFlow · CNN · Python · Matplotlib · NumPy · OpenCV.",
         "stack": ["TensorFlow", "CNN", "Python", 'Matplotlib', 'NumPy', 'OpenCV'],
         "metric": "90–95", "metric_unit": "%", "metric_small": False,
         "metric_label": "Model accuracy range", "gauge": 93,
@@ -166,8 +168,11 @@ PROJECTS = [
         "title": "Disease prediction",
         "desc": "“ML Health” — a Flask web app serving Random Forest models that "
                 "predict heart-disease risk and obesity from patient health "
-                "indicators, with a clean multi-page interface.",
-        "stack": ["Random Forest", "Scikit-learn", "Flask", "NumPy", "Python"],
+                "indicators, with a clean multi-page interface. "
+                "Built with: Random Forest · Scikit-learn · Flask · SQLite · "
+                "Werkzeug Auth · NumPy · Python · HTML · CSS · JavaScript.",
+        "stack": ["Random Forest", "Scikit-learn", "Flask", "SQLite",
+                  "Werkzeug Auth", "NumPy", "Python", "HTML", "CSS", "JavaScript"],
         "metric": "87", "metric_unit": "%", "metric_small": False,
         "metric_label": "Prediction accuracy", "gauge": 87,
         "detail": {
@@ -217,8 +222,9 @@ PROJECTS = [
         "title": "Emotion recognition",
         "desc": "A CNN-based system for facial-expression classification, with "
                 "image preprocessing, model design, training, and tuning "
-                "across the full pipeline.",
-        "stack": ["CNN", "Keras", "OpenCV"],
+                "across the full pipeline. "
+                "Built with: CNN · Keras · OpenCV · Python.",
+        "stack": ["CNN", "Keras", "OpenCV", "Python"],
         "metric": "84", "metric_unit": "%", "metric_small": False,
         "metric_label": "Facial-expression accuracy", "gauge": 84,
         "detail": {
@@ -255,7 +261,8 @@ PROJECTS = [
         "title": "Spam email detection",
         "desc": "A text-classification model that separates spam from "
                 "legitimate email, using NLP preprocessing and TF-IDF features "
-                "to flag unwanted messages automatically.",
+                "to flag unwanted messages automatically. "
+                "Built with: Scikit-learn · NLP · TF-IDF · Python · Pandas.",
         "stack": ["Scikit-learn", "NLP", "TF-IDF", "Python", "Pandas"],
         "metric": "98", "metric_unit": "%", "metric_small": False,
         "metric_label": "Classification accuracy", "gauge": 98,
@@ -297,9 +304,12 @@ PROJECTS = [
         "title": "Phishing link detection",
         "desc": "A classifier that flags phishing URLs from legitimate ones "
                 "using engineered lexical features of the link — length, "
-                "symbols, host patterns, and suspicious keywords.",
-        "stack": ["Scikit-learn", "Random Forest", "Feature Engineering",
-                  "Python", "Pandas"],
+                "symbols, host patterns, and suspicious keywords. "
+                "Built with: Scikit-learn · Random Forest · Flask · SQLite · "
+                "Werkzeug Auth · Python · Pandas · HTML · CSS · JavaScript.",
+        "stack": ["Scikit-learn", "Random Forest", "Feature Engineering", "Flask",
+                  "SQLite", "Werkzeug Auth", "Python", "Pandas", "HTML", "CSS",
+                  "JavaScript"],
         "metric": "96", "metric_unit": "%", "metric_small": False,
         "metric_label": "Detection accuracy", "gauge": 96,
         "detail": {
@@ -340,8 +350,9 @@ PROJECTS = [
         "desc": "A conversational assistant built on Natural Language "
                 "Processing, integrating the OpenAI API and Hugging Face "
                 "Transformers, served through a Streamlit interface for "
-                "low-latency, real-time interaction.",
-        "stack": ["NLP", "OpenAI API", "Transformers", "Streamlit"],
+                "low-latency, real-time interaction. "
+                "Built with: NLP · OpenAI API · Transformers · Streamlit · Python.",
+        "stack": ["NLP", "OpenAI API", "Transformers", "Streamlit", "Python"],
         "metric": "Real-time", "metric_unit": "", "metric_small": True,
         "metric_label": "Low-latency responses", "gauge": 100,
         "detail": {
@@ -379,7 +390,9 @@ PROJECTS = [
         "title": "Expense tracker",
         "desc": "SpendWise — a web app for recording, managing, and analyzing "
                 "expenses: full CRUD, user accounts, month/category filtering, "
-                "and spending analytics, built in Flask with a SQLite backend.",
+                "and spending analytics, built in Flask with a SQLite backend. "
+                "Built with: Flask · SQLite · Jinja · Werkzeug Auth · Python · "
+                "HTML · CSS · JavaScript.",
         "stack": ["Flask", "SQLite", "Jinja", "Werkzeug Auth", "Python", 'HTML', 'CSS', 'JavaScript'],
         "metric": "Deployed", "metric_unit": "", "metric_small": True,
         "metric_label": "CRUD + auth + analytics", "gauge": 100,
@@ -423,7 +436,9 @@ PROJECTS = [
         "desc": "A multi-bank web banking app — register, log in, transfer "
                 "across banks, buy airtime and data, and track every "
                 "transaction. Built in Flask with hashed PINs and a relational "
-                "data model.",
+                "data model. "
+                "Built with: Flask · SQLite · Jinja · Werkzeug Auth · Python · "
+                "HTML · CSS · JavaScript.",
         "stack": ["Flask", "SQLite", "Jinja", "Werkzeug Auth", "Python", 'HTML', 'CSS', 'JavaScript'],
         "metric": "Secure", "metric_unit": "", "metric_small": True,
         "metric_label": "Auth + transactions", "gauge": 100,
