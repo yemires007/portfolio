@@ -327,7 +327,7 @@ PROJECTS = [
                 "Strong recall on phishing URLs — catches most malicious links.",
             ],
             "links": [
-                {"label": "GitHub", "url": "#"},
+                {"label": "GitHub", "url": "https://github.com/yemires007/phishguard"},
                 {"label": "Live demo", "url": "https://phishguard-bkzq.onrender.com"},
             ],
             "gallery": [],
