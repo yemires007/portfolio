@@ -292,6 +292,48 @@ PROJECTS = [
         },
     },
     {
+        "slug": "phishing-link-detection",
+        "tag": "Security · ML",
+        "title": "Phishing link detection",
+        "desc": "A classifier that flags phishing URLs from legitimate ones "
+                "using engineered lexical features of the link — length, "
+                "symbols, host patterns, and suspicious keywords.",
+        "stack": ["Scikit-learn", "Random Forest", "Feature Engineering",
+                  "Python", "Pandas"],
+        "metric": "96", "metric_unit": "%", "metric_small": False,
+        "metric_label": "Detection accuracy", "gauge": 96,
+        "detail": {
+            "year": "2024",
+            "role": "Feature engineering, model & evaluation",
+            "overview": [
+                "A supervised model that inspects a URL and predicts whether "
+                "it's a phishing link or a legitimate one — without needing to "
+                "visit the page.",
+            ],
+            "problem": "Phishing links are one of the most common attack "
+                       "vectors. The goal was to catch malicious URLs from the "
+                       "link text alone, fast enough to screen them in real time.",
+            "approach": [
+                "Engineered lexical features from each URL — length, count of "
+                "dots/digits/special characters, use of an IP address, '@' "
+                "symbols, HTTPS, subdomain depth, and suspicious keywords.",
+                "Trained a Random Forest classifier on a labelled "
+                "phishing/legitimate URL dataset, with an 80/20 split.",
+                "Evaluated with accuracy, precision and recall, and used "
+                "feature importance to see which signals flag phishing.",
+            ],
+            "results": [
+                "Reached ~96% detection accuracy on the held-out set.",
+                "Strong recall on phishing URLs — catches most malicious links.",
+            ],
+            "links": [
+                {"label": "GitHub", "url": "#"},
+                {"label": "Live demo", "url": "#"},
+            ],
+            "gallery": [],
+        },
+    },
+    {
         "slug": "ai-chatbot",
         "tag": "NLP · LLM",
         "title": "AI chatbot",
@@ -342,7 +384,7 @@ PROJECTS = [
         "metric": "Deployed", "metric_unit": "", "metric_small": True,
         "metric_label": "CRUD + auth + analytics", "gauge": 100,
         "detail": {
-            "year": "2023 · rebuilt 2026",
+            "year": "2022",
             "role": "Full-stack — backend, data model & UI",
             "overview": [
                 "A personal expense tracker (“SpendWise”) for recording, "
@@ -386,7 +428,7 @@ PROJECTS = [
         "metric": "Secure", "metric_unit": "", "metric_small": True,
         "metric_label": "Auth + transactions", "gauge": 100,
         "detail": {
-            "year": "2023 · rebuilt 2026",
+            "year": "2021",
             "role": "Full-stack — backend, data model & UI",
             "overview": [
                 "A multi-bank banking web app covering registration, secure "
