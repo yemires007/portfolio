@@ -60,9 +60,11 @@ ABOUT_PARAGRAPHS = [
 
 FOCUS_AREAS = [
     ("Computer Vision", "ViT · CNN"),
-    ("Natural Language", "NLP · LLM"),
-    ("Model deployment", "Streamlit"),
-    ("Full-stack apps", "Flask · SQL"),
+    ("NLP & LLM apps", "Gemini · RAG"),
+    ("Data analysis", "pandas · viz"),
+    ("Full-stack web apps", "Flask · SQL"),
+    ("Deployment & DevOps", "Render · Cloud"),
+    ("Security & auth", "CSRF · hashing"),
     ("Mentorship", "Agile"),
 ]
 
