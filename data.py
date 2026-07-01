@@ -345,41 +345,56 @@ PROJECTS = [
     },
     {
         "slug": "ai-chatbot",
-        "tag": "NLP · LLM",
-        "title": "AI chatbot",
-        "desc": "A conversational assistant built on Natural Language "
-                "Processing, integrating the OpenAI API and Hugging Face "
-                "Transformers, served through a Streamlit interface for "
-                "low-latency, real-time interaction. "
-                "Built with: NLP · OpenAI API · Transformers · Streamlit · Python.",
-        "stack": ["NLP", "OpenAI API", "Transformers", "Streamlit", "Python"],
-        "metric": "Real-time", "metric_unit": "", "metric_small": True,
-        "metric_label": "Low-latency responses", "gauge": 100,
+        "tag": "NLP · LLM · Full-stack",
+        "title": "Nova — AI assistant hub",
+        "desc": "A full AI web app: chat (Google Gemini) with rich formatted "
+                "answers, chat-with-your-document (RAG), document summarizing, "
+                "data analysis with AI insights, study mode, and productivity "
+                "tools — with accounts, subscriptions and shareable chats. "
+                "Built with: Flask · Google Gemini · SQLAlchemy · PostgreSQL · "
+                "pandas · JavaScript · HTML · CSS · Python.",
+        "stack": ["Flask", "Google Gemini API", "SQLAlchemy", "PostgreSQL",
+                  "Werkzeug Auth", "Flask-Limiter", "pandas", "Matplotlib",
+                  "JavaScript", "HTML", "CSS", "Python"],
+        "metric": "Live", "metric_unit": "", "metric_small": True,
+        "metric_label": "Deployed on Render", "gauge": 100,
         "detail": {
-            "year": "2024",
-            "role": "NLP integration & app delivery",
+            "year": "2026",
+            "role": "Full-stack — product, backend, AI & UI",
             "overview": [
-                "A conversational assistant that answers in natural language, "
-                "combining the OpenAI API with Hugging Face Transformers behind "
-                "a clean Streamlit chat interface.",
+                "“Nova” is a full AI assistant web app built around a single "
+                "idea: a *doing* assistant for your own content. It combines "
+                "an LLM chat with document, data and productivity tools.",
+                "Powered by Google Gemini (key kept server-side), with user "
+                "accounts, a Free/Pro subscription model, and a Postgres "
+                "backend — deployed live on Render.",
             ],
-            "problem": "Users want quick, natural answers — not forms and menus. "
-                       "The aim was a responsive assistant that feels like a "
-                       "conversation, served through an interface anyone can use.",
+            "problem": "A plain chat box is generic. The goal was an assistant "
+                       "that works on *your* material — documents, datasets, "
+                       "notes — and is safe and polished enough to run as a real "
+                       "product.",
             "approach": [
-                "Integrated the OpenAI API for generation and Hugging Face "
-                "Transformers for NLP tasks.",
-                "Built a Streamlit chat UI for low-latency, real-time "
-                "back-and-forth.",
-                "Managed prompts and conversation state for coherent multi-turn "
-                "replies.",
+                "Chat via the Gemini API with rich Markdown rendering — "
+                "syntax-highlighted code, tables, math (KaTeX) and diagrams "
+                "(Mermaid).",
+                "Chat-with-your-document (RAG): extract text from PDF/Word/CSV, "
+                "chunk and retrieve relevant context, and answer grounded in it.",
+                "Data analysis: upload a CSV/Excel → clean, profile, visualize, "
+                "and get an AI interpretation; plus study mode and productivity "
+                "(tasks, notes, transcript action-items).",
+                "Accounts (hashed passwords, sessions), Free/Pro plans with "
+                "pricing, shareable public chat links, and export to Markdown/PDF.",
+                "Hardened: CSP + security headers, CSRF, rate limiting, and "
+                "secure session cookies. Deployed on Render with managed Postgres.",
             ],
             "results": [
-                "Delivers real-time, low-latency responses in a live chat UI.",
+                "Live, multi-feature AI product deployed on Render.",
+                "Gemini-powered chat, RAG document Q&A, data analysis with AI "
+                "insights, study & productivity tools, sharing and exports.",
             ],
             "links": [
-                {"label": "GitHub", "url": "#"},
-                {"label": "Live demo", "url": "#"},
+                {"label": "GitHub", "url": "https://github.com/yemires007/nova-ai"},
+                {"label": "Live demo", "url": "https://nova-ai-xrhy.onrender.com"},
             ],
             "gallery": [],
         },
